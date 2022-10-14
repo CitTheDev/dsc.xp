@@ -12,7 +12,7 @@ Node.js version 16.9.0 or higher is required for this package to function as int
 ## Examples
 Import the dsc.xp package:
 ```js
-const DiscordXP = require("dsc.xp").default; // For CommonJS
+const DiscordXP = require("dsc.xp"); // For CommonJS
 import DiscordXP from "dsc.xp"; // For ESM
 ```
 

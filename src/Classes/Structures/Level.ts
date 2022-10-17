@@ -1,6 +1,7 @@
 import { validateUserOptions, validateXP } from "../../Utils/index.js";
 import DB from "../../schemas/LevelDB.js";
 import { UserOptions } from "../../Interfaces/UserOptions.js";
+import { UserUpdate } from "../../Interfaces/UserUpdate.js";
 
 export class Level {
     private options: UserOptions;
@@ -27,6 +28,12 @@ export class Level {
 
             data.level += amount;
             await data.save();
+            this.options.client.emit("userUpdate", {
+                client: this.options.client,
+                guildId: this.options.guildId,
+                userId: this.options.userId,
+                type: UserUpdate.LevelAdd
+            });
 
             return res(data);
         });
@@ -45,6 +52,12 @@ export class Level {
 
             data.level -= amount;
             await data.save();
+            this.options.client.emit("userUpdate", {
+                client: this.options.client,
+                guildId: this.options.guildId,
+                userId: this.options.userId,
+                type: UserUpdate.LevelSubtract
+            });
 
             return res(data);
         });
@@ -63,6 +76,12 @@ export class Level {
 
             data.level = amount;
             await data.save();
+            this.options.client.emit("userUpdate", {
+                client: this.options.client,
+                guildId: this.options.guildId,
+                userId: this.options.userId,
+                type: UserUpdate.LevelSet
+            });
 
             return res(data);
         });

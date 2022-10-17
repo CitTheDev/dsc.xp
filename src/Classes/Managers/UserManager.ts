@@ -18,7 +18,10 @@ export class UserManager {
             const validate = validateUserOptions(options);
             if (validate.invalid) return rej(new TypeError(validate.error));
 
-            if (await schemaExists(options) === false) await DB.create({ guildId: options.guildId, userId: options.userId });
+            if (await schemaExists(options) === false) {
+                await DB.create({ guildId: options.guildId, userId: options.userId });
+                this.client.emit("userCreate", options);
+            };
 
             return res(new User(options));
         });
@@ -46,7 +49,10 @@ export class UserManager {
             const validate = validateUserOptions(options);
             if (validate.invalid) return rej(new TypeError(validate.error));
 
-            if (await schemaExists(options) === false) await DB.create({ guildId: options.guildId, userId: options.userId });
+            if (await schemaExists(options) === false) {
+                await DB.create({ guildId: options.guildId, userId: options.userId });
+                this.client.emit("userCreate", options);
+            };
             
             return res(new User(options));
         });

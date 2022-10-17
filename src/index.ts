@@ -3,6 +3,7 @@ import EventEmitter from "node:events";
 import { UserManager } from "./Classes/Managers/UserManager.js";
 import { GuildManager } from "./Classes/Managers/GuildManager.js";
 import { UserOptions } from "./Interfaces/UserOptions.js";
+import { UserUpdateOptions } from "./Interfaces/UserUpdate.js";
 
 class DiscordXP extends EventEmitter {
     public users: UserManager = new UserManager(this);
@@ -27,7 +28,7 @@ interface DiscordXPEvents {
 	guildDelete: [guildId: string];
 	userCreate: [options: UserOptions];
 	userDelete: [options: UserOptions];
-	userUpdate: [options: UserOptions];
+	userUpdate: [options: UserUpdateOptions];
 	debug: [data: string];
 }
 

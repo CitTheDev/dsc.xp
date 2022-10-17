@@ -28,6 +28,7 @@ export class GuildManager {
         return new Promise(async (res, rej) => {
             if (!guildId) return rej(new TypeError("A guild ID was not provided"));
             await DB.deleteMany({ guildId });
+            this.client.emit("guildDelete", guildId);
 
             return res(true);
         });

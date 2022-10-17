@@ -28,6 +28,11 @@ export class User {
             if (!await schemaExists(this.options)) return res(null);
 
             await DB.findOneAndDelete({ guildId: this.options.guildId, userId: this.options.userId });
+            this.options.client.emit("userDelete", {
+                client: this.options.client,
+                guildId: this.options.guildId,
+                userId: this.options.userId
+            });
             return res(true);
         });
     }

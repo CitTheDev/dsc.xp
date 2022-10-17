@@ -1,8 +1,12 @@
+import DiscordXP from "../../index.js";
 import DB from "../../schemas/LevelDB.js";
 import { validateOptions } from "../../Utils/GuildValidation.js";
 
 export class GuildManager {
-    constructor () {}
+    private client: DiscordXP;
+    constructor (client: DiscordXP) {
+        this.client = client;
+    }
 
     /**
      * Fetch the leaderboard of a guild

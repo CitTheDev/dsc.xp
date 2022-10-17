@@ -1,5 +1,7 @@
+import DiscordXP from "../../index.js";
 export declare class GuildManager {
-    constructor();
+    private client;
+    constructor(client: DiscordXP);
     /**
      * Fetch the leaderboard of a guild
      */

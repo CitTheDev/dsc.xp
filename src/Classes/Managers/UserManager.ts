@@ -1,10 +1,14 @@
+import DiscordXP from "../../index.js";
 import { UserOptions } from "../../Interfaces/UserOptions.js";
 import DB from "../../schemas/LevelDB.js";
 import { validateOptions, schemaExists } from "../../Utils/UserValidation.js";
 import { User } from "../Structures/User.js";
 
 export class UserManager {
-    constructor () {}
+    private client: DiscordXP;
+    constructor (client: DiscordXP) {
+        this.client = client;
+    }
 
     /**
      * Create a user and save it to the database

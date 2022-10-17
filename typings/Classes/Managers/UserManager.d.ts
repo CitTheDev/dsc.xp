@@ -1,6 +1,6 @@
 import DiscordXP from "../../index.js";
 import { UserOptions } from "../../Interfaces/index.js";
-import { User } from "../Structures/User.js";
+import { User } from "../index.js";
 export declare class UserManager {
     private client;
     constructor(client: DiscordXP);

@@ -1,6 +1,5 @@
 import { UserOptions } from "../../Interfaces/index.js";
-import { Level } from "./Level.js";
-import { XP } from "./XP.js";
+import { Level, XP } from "../index.js";
 export declare class User {
     private options;
     level: Level;

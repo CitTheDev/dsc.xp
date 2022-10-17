@@ -2,7 +2,7 @@ import DiscordXP from "../../index.js";
 import { UserOptions } from "../../Interfaces/index.js";
 import DB from "../../schemas/LevelDB.js";
 import { validateUserOptions, schemaExists } from "../../Utils/index.js";
-import { User } from "../Structures/User.js";
+import { User } from "../index.js";
 
 export class UserManager {
     private client: DiscordXP;

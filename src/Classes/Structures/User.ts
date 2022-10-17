@@ -1,8 +1,7 @@
 import { UserOptions } from "../../Interfaces/index.js";
 import { schemaExists, validateUserOptions } from "../../Utils/index.js";
 import DB from "../../schemas/LevelDB.js";
-import { Level } from "./Level.js";
-import { XP } from "./XP.js";
+import { Level, XP } from "../index.js";
 
 export class User {
     private options: UserOptions;

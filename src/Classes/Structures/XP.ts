@@ -17,7 +17,7 @@ export class XP {
     /**
      * Add XP to the user
      */
-    add(amount: number = 1): Promise<UserData | null> {
+    add(amount = 1): Promise<UserData | null> {
         return new Promise(async (res, rej) => {
             const XPValidation = validateXP(amount);
             if (XPValidation.invalid) return rej(new TypeError(XPValidation.error));
@@ -41,7 +41,7 @@ export class XP {
     /**
      * Subtract XP from the user
      */
-    subtract(amount: number = 1): Promise<UserData | null> {
+    subtract(amount = 1): Promise<UserData | null> {
         return new Promise(async (res, rej) => {
             const XPValidation = validateXP(amount);
             if (XPValidation.invalid) return rej(new TypeError(XPValidation.error));
@@ -65,7 +65,7 @@ export class XP {
     /**
      * Set the XP of the user
      */
-    set(amount: number = 1): Promise<UserData | null> {
+    set(amount = 1): Promise<UserData | null> {
         return new Promise(async (res, rej) => {
             const XPValidation = validateXP(amount);
             if (XPValidation.invalid) return rej(new TypeError(XPValidation.error));

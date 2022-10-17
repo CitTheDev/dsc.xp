@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import mongoose from "mongoose";
 import EventEmitter from "node:events";
 import { UserManager } from "./Classes/Managers/UserManager.js";

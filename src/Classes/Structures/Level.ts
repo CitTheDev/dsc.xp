@@ -17,7 +17,7 @@ export class Level {
     /**
      * Add a level to a users schema
      */
-    add(amount: number = 1): Promise<UserData | null> {
+    add(amount = 1): Promise<UserData | null> {
         return new Promise(async (res, rej) => {
             const XPValidation = validateXP(amount);
             if (XPValidation.invalid) return rej(new TypeError(XPValidation.error));
@@ -41,7 +41,7 @@ export class Level {
     /**
      * Subtract a level from a users schema
      */
-    subtract(amount: number = 1): Promise<UserData | null> {
+    subtract(amount = 1): Promise<UserData | null> {
         return new Promise(async (res, rej) => {
             const XPValidation = validateXP(amount);
             if (XPValidation.invalid) return rej(new TypeError(XPValidation.error));
@@ -65,7 +65,7 @@ export class Level {
     /**
      * Set the level of a user
      */
-    set(amount: number = 1): Promise<UserData | null> {
+    set(amount = 1): Promise<UserData | null> {
         return new Promise(async (res, rej) => {
             const XPValidation = validateXP(amount);
             if (XPValidation.invalid) return rej(new TypeError(XPValidation.error));

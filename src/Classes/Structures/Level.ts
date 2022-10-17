@@ -1,7 +1,6 @@
 import { validateUserOptions, validateXP } from "../../Utils/index.js";
 import DB from "../../schemas/LevelDB.js";
-import { UserOptions } from "../../Interfaces/UserOptions.js";
-import { UserUpdate } from "../../Interfaces/UserUpdate.js";
+import { UserData, UserOptions, UserUpdate } from "../../Interfaces/index.js";
 
 export class Level {
     private options: UserOptions;
@@ -18,7 +17,7 @@ export class Level {
     /**
      * Add a level to a users schema
      */
-    add(amount: number = 1): Promise<object | null> {
+    add(amount: number = 1): Promise<UserData | null> {
         return new Promise(async (res, rej) => {
             const XPValidation = validateXP(amount);
             if (XPValidation.invalid) return rej(new TypeError(XPValidation.error));
@@ -42,7 +41,7 @@ export class Level {
     /**
      * Subtract a level from a users schema
      */
-    subtract(amount: number = 1): Promise<object | null> {
+    subtract(amount: number = 1): Promise<UserData | null> {
         return new Promise(async (res, rej) => {
             const XPValidation = validateXP(amount);
             if (XPValidation.invalid) return rej(new TypeError(XPValidation.error));
@@ -66,7 +65,7 @@ export class Level {
     /**
      * Set the level of a user
      */
-    set(amount: number = 1): Promise<object | null> {
+    set(amount: number = 1): Promise<UserData | null> {
         return new Promise(async (res, rej) => {
             const XPValidation = validateXP(amount);
             if (XPValidation.invalid) return rej(new TypeError(XPValidation.error));

@@ -1,4 +1,4 @@
-import { UserOptions } from "../../Interfaces/UserOptions.js";
+import { UserData, UserOptions } from "../../Interfaces/index.js";
 export declare class Level {
     private options;
     /**
@@ -8,15 +8,15 @@ export declare class Level {
     /**
      * Add a level to a users schema
      */
-    add(amount?: number): Promise<object | null>;
+    add(amount?: number): Promise<UserData | null>;
     /**
      * Subtract a level from a users schema
      */
-    subtract(amount?: number): Promise<object | null>;
+    subtract(amount?: number): Promise<UserData | null>;
     /**
      * Set the level of a user
      */
-    set(amount?: number): Promise<object | null>;
+    set(amount?: number): Promise<UserData | null>;
     /**
      * Fetch the level of the user
      */

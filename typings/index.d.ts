@@ -2,8 +2,7 @@
 import EventEmitter from "node:events";
 import { UserManager } from "./Classes/Managers/UserManager.js";
 import { GuildManager } from "./Classes/Managers/GuildManager.js";
-import { UserOptions } from "./Interfaces/UserOptions.js";
-import { UserUpdateOptions } from "./Interfaces/UserUpdate.js";
+import { UserOptions, UserUpdateOptions } from "./Interfaces/index.js";
 declare class DiscordXP extends EventEmitter {
     users: UserManager;
     guilds: GuildManager;

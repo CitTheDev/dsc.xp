@@ -1,4 +1,4 @@
-import { UserOptions } from "../../Interfaces/UserOptions.js";
+import { UserOptions } from "../../Interfaces/index.js";
 import { Level } from "./Level.js";
 import { XP } from "./XP.js";
 export declare class User {

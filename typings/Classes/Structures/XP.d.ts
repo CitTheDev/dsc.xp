@@ -1,4 +1,4 @@
-import { UserOptions } from "../../Interfaces/UserOptions.js";
+import { UserData, UserOptions } from "../../Interfaces/index.js";
 export declare class XP {
     private options;
     /**
@@ -8,15 +8,15 @@ export declare class XP {
     /**
      * Add XP to the user
      */
-    add(amount?: number): Promise<object | null>;
+    add(amount?: number): Promise<UserData | null>;
     /**
      * Subtract XP from the user
      */
-    subtract(amount?: number): Promise<object | null>;
+    subtract(amount?: number): Promise<UserData | null>;
     /**
      * Set the XP of the user
      */
-    set(amount?: number): Promise<object | null>;
+    set(amount?: number): Promise<UserData | null>;
     /**
      * Fetch the XP of the user
      */

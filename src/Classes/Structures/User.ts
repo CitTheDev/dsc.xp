@@ -1,4 +1,4 @@
-import { UserOptions } from "../../Interfaces/UserOptions.js";
+import { UserOptions } from "../../Interfaces/index.js";
 import { schemaExists, validateUserOptions } from "../../Utils/index.js";
 import DB from "../../schemas/LevelDB.js";
 import { Level } from "./Level.js";

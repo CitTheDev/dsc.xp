@@ -1,6 +1,5 @@
-import { UserOptions } from "../Interfaces/UserOptions.js";
+import { UserOptions, ValidationData } from "../Interfaces/index.js";
 import DB from "../schemas/LevelDB.js";
-import { ValidationData } from "../Interfaces/Util.js";
 
 /**
  * Checks to make sure that the correct options have been given

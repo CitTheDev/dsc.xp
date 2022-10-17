@@ -1,5 +1,4 @@
-import { UserOptions } from "../Interfaces/UserOptions.js";
-import { ValidationData } from "../Interfaces/Util.js";
+import { UserOptions, ValidationData } from "../Interfaces/index.js";
 /**
  * Checks to make sure that the correct options have been given
  */

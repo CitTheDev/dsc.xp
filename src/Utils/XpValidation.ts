@@ -1,4 +1,4 @@
-import { ValidationData } from "../Interfaces/Util";
+import { ValidationData } from "../Interfaces/Util.js";
 
 /**
  * Check if the amount provided is valid

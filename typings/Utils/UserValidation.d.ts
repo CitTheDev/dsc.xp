@@ -1,11 +1,9 @@
 import { UserOptions } from "../Interfaces/UserOptions.js";
+import { ValidationData } from "../Interfaces/Util.js";
 /**
  * Checks to make sure that the correct options have been given
  */
-export declare function validateOptions(options: UserOptions): {
-    invalid: boolean;
-    error?: string;
-};
+export declare function validateUserOptions(options: UserOptions): ValidationData;
 /**
  * Checks if a schema exists
  */

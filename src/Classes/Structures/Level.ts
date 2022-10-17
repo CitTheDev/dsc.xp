@@ -1,7 +1,6 @@
-import { validateUserOptions } from "../../Utils/index";
+import { validateUserOptions, validateXP } from "../../Utils/index.js";
 import DB from "../../schemas/LevelDB.js";
 import { UserOptions } from "../../Interfaces/UserOptions.js";
-import { validateXP } from "../../Utils/XpValidation.js";
 
 export class Level {
     private options: UserOptions;

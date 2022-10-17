@@ -1,4 +1,4 @@
-import DiscordXP from "../index";
+import DiscordXP from "../index.js";
 export interface UserOptions {
     client: DiscordXP;
     guildId: string;

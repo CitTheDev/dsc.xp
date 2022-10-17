@@ -17,7 +17,8 @@ export class GuildManager {
             if (validate.invalid) return rej(new TypeError(validate.error));
 
             const sorted = (await DB.find({ guildId: options.guildId })).sort((a, b) => b.xp - a.xp).slice(0, options.limit - 1);
-            return res(sorted);
+            const data = sorted.map((user) => ({ userId: user.userId, level: user.level, xp: user.xp }));
+            return res(data);
         });
     }
 

@@ -35,7 +35,7 @@ export class Level {
                 type: UserUpdate.LevelAdd
             });
 
-            return res(data);
+            return res({ guildId: data.guildId, userId: data.userId, level: data.level, xp: data.xp });
         });
     }
 
@@ -59,7 +59,7 @@ export class Level {
                 type: UserUpdate.LevelSubtract
             });
 
-            return res(data);
+            return res({ guildId: data.guildId, userId: data.userId, level: data.level, xp: data.xp });
         });
     }
 
@@ -83,7 +83,7 @@ export class Level {
                 type: UserUpdate.LevelSet
             });
 
-            return res(data);
+            return res({ guildId: data.guildId, userId: data.userId, level: data.level, xp: data.xp });
         });
     }
 

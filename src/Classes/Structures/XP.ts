@@ -35,7 +35,7 @@ export class XP {
                 type: UserUpdate.XPAdd
             });
 
-            return res(data);
+            return res({ guildId: data.guildId, userId: data.userId, level: data.level, xp: data.xp });
         });
     }
 
@@ -59,7 +59,7 @@ export class XP {
                 type: UserUpdate.XPSubstract
             });
 
-            return res(data);
+            return res({ guildId: data.guildId, userId: data.userId, level: data.level, xp: data.xp });
         });
     }
 
@@ -83,7 +83,7 @@ export class XP {
                 type: UserUpdate.XPSet
             });
 
-            return res(data);
+            return res({ guildId: data.guildId, userId: data.userId, level: data.level, xp: data.xp });
         });
     }
 

@@ -1,4 +1,4 @@
-import { validateOptions } from "../../Utils/UserValidation.js";
+import { validateUserOptions } from "../../Utils/index";
 import DB from "../../schemas/LevelDB.js";
 import { UserOptions } from "../../Interfaces/UserOptions.js";
 import { validateXP } from "../../Utils/XpValidation.js";
@@ -11,7 +11,7 @@ export class XP {
     constructor (options: UserOptions) {
         this.options = options;
 
-        const validate = validateOptions(this.options);
+        const validate = validateUserOptions(this.options);
         if (validate.invalid) throw new TypeError(validate.error);
     }
 

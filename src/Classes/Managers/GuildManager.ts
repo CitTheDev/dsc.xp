@@ -1,6 +1,6 @@
 import DiscordXP from "../../index.js";
 import DB from "../../schemas/LevelDB.js";
-import { validateOptions } from "../../Utils/GuildValidation.js";
+import { validateGuildOptions } from "../../Utils/index";
 
 export class GuildManager {
     private client: DiscordXP;
@@ -13,7 +13,7 @@ export class GuildManager {
      */
     fetchLeaderboard(options: { guildId: string, limit: number }) {
         return new Promise(async (res, rej) => {
-            const validate = validateOptions(options);
+            const validate = validateGuildOptions(options);
             if (validate.invalid) return rej(new TypeError(validate.error));
 
             const sorted = (await DB.find({ guildId: options.guildId })).sort((a, b) => b.xp - a.xp).slice(0, options.limit - 1);

@@ -1,7 +1,7 @@
 import DiscordXP from "../../index.js";
 import { UserOptions } from "../../Interfaces/UserOptions.js";
 import DB from "../../schemas/LevelDB.js";
-import { validateOptions, schemaExists } from "../../Utils/UserValidation.js";
+import { validateUserOptions, schemaExists } from "../../Utils/index";
 import { User } from "../Structures/User.js";
 
 export class UserManager {
@@ -15,7 +15,7 @@ export class UserManager {
      */
     create(options: UserOptions): Promise<User> {
         return new Promise(async (res, rej) => {
-            const validate = validateOptions(options);
+            const validate = validateUserOptions(options);
             if (validate.invalid) return rej(new TypeError(validate.error));
 
             if (await schemaExists(options) === false) await DB.create({ guildId: options.guildId, userId: options.userId });
@@ -29,7 +29,7 @@ export class UserManager {
      */
     delete(options: UserOptions): Promise<boolean> {
         return new Promise(async (res, rej) => {
-            const validate = validateOptions(options);
+            const validate = validateUserOptions(options);
             if (validate.invalid) return rej(new TypeError(validate.error));
             if (await schemaExists(options) === false) return res(false);
 
@@ -43,7 +43,7 @@ export class UserManager {
      */
     fetch(options: UserOptions): Promise<User> {
         return new Promise(async (res, rej) => {
-            const validate = validateOptions(options);
+            const validate = validateUserOptions(options);
             if (validate.invalid) return rej(new TypeError(validate.error));
 
             if (await schemaExists(options) === false) await DB.create({ guildId: options.guildId, userId: options.userId });

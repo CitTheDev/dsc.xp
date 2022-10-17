@@ -1,7 +1,9 @@
+import { ValidationData } from "../Interfaces/Util";
+
 /**
  * Checks to make sure that the correct options have been given
  */
-export function validateOptions(options: { guildId: string, limit: number }): { invalid: boolean, error?: string } {
+export function validateGuildOptions(options: { guildId: string, limit: number }): ValidationData {
     if (!options.guildId) return ({ invalid: true, error: "A guild ID was not provided" });
     if (!options.limit) return ({ invalid: true, error: "A limit for the leaderboard was not provided" });
 

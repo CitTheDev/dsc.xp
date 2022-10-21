@@ -2,14 +2,6 @@
 import EventEmitter from "node:events";
 import { UserManager, GuildManager } from "./Classes/index.js";
 import { UserOptions, UserUpdateOptions } from "./Interfaces/index.js";
-export declare class DiscordXP extends EventEmitter {
-    users: UserManager;
-    guilds: GuildManager;
-    /**
-     * Initialize the dsc.xp package
-     */
-    constructor(url: string);
-}
 interface DiscordXPEvents {
     newListener: [name: string, listener: (...args: any) => void];
     removeListener: [name: string, listener: (...args: any) => void];
@@ -25,5 +17,13 @@ export interface DiscordXP {
     on: (<K extends keyof DiscordXPEvents>(event: K, listener: (...args: DiscordXPEvents[K]) => void) => this) & (<S extends string | symbol>(event: Exclude<S, keyof DiscordXPEvents>, listener: (...args: any[]) => void) => this);
     once: (<K extends keyof DiscordXPEvents>(event: K, listener: (...args: DiscordXPEvents[K]) => void) => this) & (<S extends string | symbol>(event: Exclude<S, keyof DiscordXPEvents>, listener: (...args: any[]) => void) => this);
     removeAllListeners: (<K extends keyof DiscordXPEvents>(event?: K) => this) & (<S extends string | symbol>(event?: Exclude<S, keyof DiscordXPEvents>) => this);
+}
+export declare class DiscordXP extends EventEmitter {
+    users: UserManager;
+    guilds: GuildManager;
+    /**
+     * Initialize the dsc.xp package
+     */
+    constructor(url: string);
 }
 export {};

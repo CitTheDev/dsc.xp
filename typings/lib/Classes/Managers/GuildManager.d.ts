@@ -1,4 +1,4 @@
-import DiscordXP from "../../index.js";
+import { DiscordXP } from "../../index.js";
 export declare class GuildManager {
     private client;
     constructor(client: DiscordXP);

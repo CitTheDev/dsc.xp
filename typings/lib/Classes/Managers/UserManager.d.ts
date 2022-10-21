@@ -1,4 +1,4 @@
-import DiscordXP from "../../index.js";
+import { DiscordXP } from "../../index.js";
 import { UserOptions } from "../../Interfaces/index.js";
 import { User } from "../index.js";
 export declare class UserManager {

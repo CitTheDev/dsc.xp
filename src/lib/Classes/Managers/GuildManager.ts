@@ -1,4 +1,4 @@
-import DiscordXP from "../../index.js";
+import { DiscordXP } from "../../index.js";
 import DB from "../../schemas/LevelDB.js";
 import { validateGuildOptions } from "../../Utils/index.js";
 

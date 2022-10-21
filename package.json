@@ -2,12 +2,12 @@
     "name": "dsc.xp",
     "version": "1.1.0",
     "description": "A simple XP system for your discord bot",
-    "main": "./index.js",
+    "main": "./dist/index.js",
     "module": "./dist/index.mjs",
     "types": "./typings/index.d.ts",
     "exports": {
         ".": {
-            "require": "./index.js",
+            "require": "./dist/index.js",
             "import": "./dist/index.mjs",
             "types": "./typings/index.d.ts"
         }

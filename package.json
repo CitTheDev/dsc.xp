@@ -2,27 +2,27 @@
     "name": "dsc.xp",
     "version": "1.1.1",
     "description": "A simple XP system for your discord bot",
-    "main": "./dist/index.js",
-    "module": "./dist/index.mjs",
-    "types": "./typings/index.d.ts",
-    "exports": {
-        ".": {
-            "require": "./dist/index.js",
-            "import": "./dist/index.mjs",
-            "types": "./typings/index.d.ts"
-        }
-    },
     "scripts": {
         "compile": "node scripts/compile.js",
         "lint": "eslint . --ext .ts",
         "fix": "eslint . --ext .ts --fix"
     },
-    "files": [
-        "dist",
-        "typings",
-        "LICENSE",
-        "README.md"
-    ],
+    "main": "./dist/index.js",
+	"module": "./dist/index.mjs",
+	"types": "./dist/index.d.ts",
+	"exports": {
+		"import": "./dist/index.mjs",
+		"require": "./dist/index.js",
+		"types": "./dist/index.d.ts"
+	},
+	"directories": {
+		"lib": "src",
+		"test": "tests"
+	},
+	"files": [
+		"dist",
+        "typings"
+	],
     "license": "Apache-2.0",
     "repository": {
         "type": "git",

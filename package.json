@@ -4,20 +4,19 @@
     "description": "A simple XP system for your discord bot",
     "main": "./dist/index.js",
     "module": "./dist/index.mjs",
-    "types": "./typings/index.d.ts",
+    "types": "./dist/index.d.ts",
     "exports": {
         "require": "./dist/index.js",
         "import": "./dist/index.mjs",
-        "types": "./typings/index.d.ts"
+        "types": "./dist/index.d.ts"
     },
     "scripts": {
-        "compile": "node scripts/compile.js",
+        "build": "tsup",
         "lint": "eslint . --ext .ts",
         "fix": "eslint . --ext .ts --fix"
     },
     "files": [
-        "dist",
-        "typings"
+        "dist"
     ],
     "license": "Apache-2.0",
     "repository": {
@@ -37,6 +36,7 @@
         "@typescript-eslint/eslint-plugin": "^5.40.0",
         "@typescript-eslint/parser": "^5.40.0",
         "eslint": "^8.25.0",
+        "tsup": "^6.4.0",
         "typescript": "^4.8.4"
     }
 }

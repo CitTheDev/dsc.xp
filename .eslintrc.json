@@ -9,6 +9,11 @@
         "plugin:@typescript-eslint/eslint-recommended",
         "plugin:@typescript-eslint/recommended"
     ],
+    "ignorePatterns": [
+        "dist",
+        "scripts",
+        "tests"
+    ],
     "rules": {
         "indent": ["error", 4, { "SwitchCase": 1, "MemberExpression": 1 }],
         "no-async-promise-executor": ["off", "always"],

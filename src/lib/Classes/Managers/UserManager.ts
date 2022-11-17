@@ -6,12 +6,17 @@ import { User } from "../index.js";
 
 export class UserManager {
     private client: DiscordXP;
+    /**
+     * Initialise the UserManager class
+     * @param client - The DiscordXP client
+     */
     constructor (client: DiscordXP) {
         this.client = client;
     }
 
     /**
      * Create a user and save it to the database
+     * @param options - The options needed to create a user
      */
     create(options: UserOptions): Promise<User> {
         return new Promise(async (res, rej) => {
@@ -29,6 +34,7 @@ export class UserManager {
 
     /**
      * Delete a user from the database
+     * @param options - The options needed to delete a user
      */
     delete(options: UserOptions): Promise<boolean> {
         return new Promise(async (res, rej) => {
@@ -43,6 +49,7 @@ export class UserManager {
 
     /**
      * Fetch a user from the database
+     * @param options - The options needed to fetch the user
      */
     fetch(options: UserOptions): Promise<User> {
         return new Promise(async (res, rej) => {

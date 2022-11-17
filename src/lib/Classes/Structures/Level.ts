@@ -5,7 +5,8 @@ import { UserData, UserOptions, UserUpdate } from "../../Interfaces/index.js";
 export class Level {
     private options: UserOptions;
     /**
-     * Initialise a new level instance
+     * Initialise the level structure of the user
+     * @param options - The options for the user
      */
     constructor (options: UserOptions) {
         this.options = options;
@@ -16,6 +17,7 @@ export class Level {
 
     /**
      * Add a level to a users schema
+     * @param amount - The amount of levels to add to the user
      */
     add(amount = 1): Promise<UserData | null> {
         return new Promise(async (res, rej) => {
@@ -40,6 +42,7 @@ export class Level {
 
     /**
      * Subtract a level from a users schema
+     * @param amount - The amount of levels to subtract from the user
      */
     subtract(amount = 1): Promise<UserData | null> {
         return new Promise(async (res, rej) => {
@@ -64,6 +67,7 @@ export class Level {
 
     /**
      * Set the level of a user
+     * @param amount - The number to set the users level to
      */
     set(amount = 1): Promise<UserData | null> {
         return new Promise(async (res, rej) => {

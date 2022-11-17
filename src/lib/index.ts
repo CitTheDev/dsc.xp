@@ -37,10 +37,13 @@ export interface DiscordXP {
 }
 
 export class DiscordXP extends EventEmitter {
+    /** The User Manager */
     public users: UserManager = new UserManager(this);
+    /** The Guild Manager */
     public guilds: GuildManager = new GuildManager(this);
     /**
      * Initialize the dsc.xp package
+     * @param url - The MongoDB database URL
      */
     constructor (url: string) {
         super ();

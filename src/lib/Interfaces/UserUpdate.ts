@@ -1,4 +1,4 @@
-import { UserOptions } from "./UserOptions";
+import { UserOptions } from "./UserOptions.js";
 
 export interface UserUpdateOptions extends UserOptions {
     type: UserUpdate;

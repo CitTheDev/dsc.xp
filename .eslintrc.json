@@ -2,7 +2,8 @@
     "root": true,
     "parser": "@typescript-eslint/parser",
     "plugins": [
-        "@typescript-eslint"
+        "@typescript-eslint",
+        "eslint-plugin-import"
     ],
     "extends": [
         "eslint:recommended",
@@ -26,6 +27,10 @@
         "keyword-spacing": ["error", { "before": true, "after": true }],
         "object-curly-spacing": ["error", "always"],
         "arrow-parens": ["error", "always"],
-        "@typescript-eslint/no-empty-function": ["off", "always"]
+        "@typescript-eslint/no-empty-function": ["off", "always"],
+        "import/extensions": ["error", "always"],
+        "no-trailing-spaces": ["error", {}],
+        "no-multi-spaces": ["error", {}],
+        "semi-spacing": ["error", { "before": false, "after": true }]
     }
 }

@@ -1,6 +1,6 @@
 {
     "name": "dsc.xp",
-    "version": "1.1.2",
+    "version": "1.1.3",
     "description": "A simple XP system for your discord bot",
     "main": "./dist/index.js",
     "module": "./dist/index.mjs",

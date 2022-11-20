@@ -1,29 +1,36 @@
 import { DiscordXP } from "../../index.js";
+import { UserData, GuildLeaderboardData } from "../../Interfaces/index.js";
 import DB from "../../schemas/LevelDB.js";
-import { validateGuildOptions } from "../../Utils/index.js";
+import { validateGuildLeaderboardOptions } from "../../Utils/index.js";
 
 export class GuildManager {
     private client: DiscordXP;
+    /**
+     * Initialise the GuildManager class
+     * @param client - The DiscordXP client
+     */
     constructor (client: DiscordXP) {
         this.client = client;
     }
 
     /**
      * Fetch the leaderboard of a guild
+     * @param options - The options needed to fetch the leaderboard
      */
-    fetchLeaderboard(options: { guildId: string, limit: number }) {
+    fetchLeaderboard(options: GuildLeaderboardData): Promise<UserData[]> {
         return new Promise(async (res, rej) => {
-            const validate = validateGuildOptions(options);
+            const validate = validateGuildLeaderboardOptions(options);
             if (validate.invalid) return rej(new TypeError(validate.error));
 
             const sorted = (await DB.find({ guildId: options.guildId })).sort((a, b) => b.xp - a.xp).slice(0, options.limit - 1);
-            const data = sorted.map((user) => ({ userId: user.userId, level: user.level, xp: user.xp }));
+            const data = sorted.map((user) => ({ guildId: user.guildId, userId: user.userId, level: user.level, xp: user.xp }));
             return res(data);
         });
     }
 
     /**
      * Delete all entries of a specific guild
+     * @param guildId - The ID of the guild to delete
      */
     delete(guildId: string): Promise<boolean> {
         return new Promise(async (res, rej) => {

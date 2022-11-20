@@ -3,6 +3,7 @@ import DB from "../schemas/LevelDB.js";
 
 /**
  * Checks to make sure that the correct options have been given
+ * @param options - The options needed for the validation
  */
 export function validateUserOptions(options: UserOptions): ValidationData {
     if (!options.guildId) return ({ invalid: true, error: "A guild ID was not provided" });
@@ -14,6 +15,7 @@ export function validateUserOptions(options: UserOptions): ValidationData {
 
 /**
  * Checks if a schema exists
+ * @param options - The options needed for the validation
  */
 export async function schemaExists(options: UserOptions): Promise<boolean> {
     const data = await DB.findOne({ guildId: options.guildId, userId: options.userId });

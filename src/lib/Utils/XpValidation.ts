@@ -2,6 +2,7 @@ import { ValidationData } from "../Interfaces/index.js";
 
 /**
  * Check if the amount provided is valid
+ * @param amount - The amount
  */
 export function validateXP(amount: number): ValidationData {
     if (!amount) return ({ invalid: true, error: "An amount was not provided" });

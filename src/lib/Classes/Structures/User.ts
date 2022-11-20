@@ -9,6 +9,7 @@ export class User {
     public xp: XP;
     /**
      * Initialise a new user instance
+     * @param options - The options for the user
      */
     constructor (options: UserOptions) {
         const validate = validateUserOptions(options);

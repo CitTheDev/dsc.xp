@@ -6,6 +6,7 @@ export class XP {
     private options: UserOptions;
     /**
      * Initialise a new XP instance
+     * @param options - The options for the user
      */
     constructor (options: UserOptions) {
         this.options = options;
@@ -16,6 +17,7 @@ export class XP {
 
     /**
      * Add XP to the user
+     * @param amount - The amount of XP to add to the user
      */
     add(amount = 1): Promise<UserData | null> {
         return new Promise(async (res, rej) => {
@@ -40,6 +42,7 @@ export class XP {
 
     /**
      * Subtract XP from the user
+     * @param amount - The amount of XP to subtract from the user
      */
     subtract(amount = 1): Promise<UserData | null> {
         return new Promise(async (res, rej) => {
@@ -64,6 +67,7 @@ export class XP {
 
     /**
      * Set the XP of the user
+     * @param amount - The number to set the users XP to
      */
     set(amount = 1): Promise<UserData | null> {
         return new Promise(async (res, rej) => {

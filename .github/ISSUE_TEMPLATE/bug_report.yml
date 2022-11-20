@@ -1,0 +1,48 @@
+name: Bug report
+description: Report incorrect or unexpected behavior
+labels: [bug]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Issue Description
+      description: |
+        Describe the issue in as much detail as possible
+    validations:
+      required: true
+
+  - type: textarea
+    id: codesample
+    attributes:
+      label: How to Reproduce Issue
+      description: Steps on how to reproduce the issue
+      render: typescript
+      placeholder: |
+        Your code sample should be...
+        ... Minimal - Use as little code as possible that still produces the same problem (and is understandable)
+        ... Complete - Provide all parts someone else needs to reproduce your problem
+        ... Reproducible - Test the code you're about to provide to make sure it reproduces the problem
+
+  - type: input
+    id: dscxp-version
+    attributes:
+      label: Package Version
+      description: Which version of the package are you using? Run `npm list dsc.xp` in your project directory and paste the output.
+    validations:
+      required: true
+
+  - type: input
+    id: node-version
+    attributes:
+      label: Node.js Version
+      description: |
+        Which version of Node.js are you using? Run `node -v` in your project directory and paste the output.
+        If you are using TypeScript, please include its version (`npm list typescript`) as well.
+    validations:
+      required: true
+
+  - type: input
+    id: os
+    attributes:
+      label: Operating System
+      description: Which OS did you experience this issue on?

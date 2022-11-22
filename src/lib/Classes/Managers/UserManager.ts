@@ -51,15 +51,12 @@ export class UserManager {
      * Fetch a user from the database
      * @param options - The options needed to fetch the user
      */
-    fetch(options: UserOptions): Promise<User> {
+    fetch(options: UserOptions): Promise<User | null> {
         return new Promise(async (res, rej) => {
             const validate = validateUserOptions(options);
             if (validate.invalid) return rej(new TypeError(validate.error));
 
-            if (await schemaExists(options) === false) {
-                await DB.create({ guildId: options.guildId, userId: options.userId });
-                this.client.emit("userCreate", options);
-            }
+            if (await schemaExists(options) === false) return res(null);
 
             return res(new User(options));
         });

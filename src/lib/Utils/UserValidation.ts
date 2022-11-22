@@ -17,7 +17,6 @@ export function validateUserOptions(options: UserOptions): ValidationData {
  * Checks if a schema exists
  * @param options - The options needed for the validation
  */
-export async function schemaExists(options: UserOptions): Promise<boolean> {
-    const data = await DB.findOne({ guildId: options.guildId, userId: options.userId });
-    return data ? true : false;
+export async function fetchSchema(options: UserOptions) {
+    return await DB.findOne({ guildId: options.guildId, userId: options.userId });
 }

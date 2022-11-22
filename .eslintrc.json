@@ -13,7 +13,8 @@
     "ignorePatterns": [
         "dist",
         "scripts",
-        "tests"
+        "tests",
+        "examples"
     ],
     "rules": {
         "indent": ["error", 4, { "SwitchCase": 1, "MemberExpression": 1 }],

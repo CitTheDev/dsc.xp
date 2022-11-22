@@ -1,5 +1,5 @@
 import { UserOptions } from "../../Interfaces/index.js";
-import { schemaExists, validateUserOptions } from "../../Utils/index.js";
+import { fetchSchema, validateUserOptions } from "../../Utils/index.js";
 import DB from "../../schemas/LevelDB.js";
 import { Level, XP } from "../index.js";
 
@@ -25,7 +25,8 @@ export class User {
      */
     delete(): Promise<boolean | null> {
         return new Promise(async (res) => {
-            if (!await schemaExists(this.options)) return res(null);
+            const data = await fetchSchema(this.options);
+            if (!data) return res(null);
 
             await DB.findOneAndDelete({ guildId: this.options.guildId, userId: this.options.userId });
             this.options.client.emit("userDelete", {

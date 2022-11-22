@@ -1,5 +1,4 @@
-import { validateUserOptions, validateXP } from "../../Utils/index.js";
-import DB from "../../schemas/LevelDB.js";
+import { fetchSchema, validateUserOptions, validateXP } from "../../Utils/index.js";
 import { UserData, UserOptions, UserUpdate } from "../../Interfaces/index.js";
 
 export class XP {
@@ -24,7 +23,7 @@ export class XP {
             const XPValidation = validateXP(amount);
             if (XPValidation.invalid) return rej(new TypeError(XPValidation.error));
 
-            const data = await DB.findOne({ guildId: this.options.guildId, userId: this.options.userId });
+            const data = await fetchSchema(this.options);
             if (!data) return res(null);
 
             data.xp += amount;
@@ -49,7 +48,7 @@ export class XP {
             const XPValidation = validateXP(amount);
             if (XPValidation.invalid) return rej(new TypeError(XPValidation.error));
 
-            const data = await DB.findOne({ guildId: this.options.guildId, userId: this.options.userId });
+            const data = await fetchSchema(this.options);
             if (!data) return res(null);
 
             data.xp -= amount;
@@ -64,7 +63,7 @@ export class XP {
             return res({ guildId: data.guildId, userId: data.userId, level: data.level, xp: data.xp });
         });
     }
-
+    // TODO: Remove default amount
     /**
      * Set the XP of the user
      * @param amount - The number to set the users XP to
@@ -74,7 +73,7 @@ export class XP {
             const XPValidation = validateXP(amount);
             if (XPValidation.invalid) return rej(new TypeError(XPValidation.error));
 
-            const data = await DB.findOne({ guildId: this.options.guildId, userId: this.options.userId });
+            const data = await fetchSchema(this.options);
             if (!data) return res(null);
 
             data.xp = amount;
@@ -95,7 +94,7 @@ export class XP {
      */
     fetch(): Promise<number | null> {
         return new Promise(async (res) => {
-            const data = await DB.findOne({ guildId: this.options.guildId, userId: this.options.userId });
+            const data = await fetchSchema(this.options);
             if (!data) return res(null);
 
             return res(data.xp);

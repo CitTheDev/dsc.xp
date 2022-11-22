@@ -22,6 +22,7 @@ export class GuildManager {
             const validate = validateGuildLeaderboardOptions(options);
             if (validate.invalid) return rej(new TypeError(validate.error));
 
+            // TODO: Fetch data first then use all methods
             const sorted = (await DB.find({ guildId: options.guildId })).sort((a, b) => b.xp - a.xp).slice(0, options.limit - 1);
             const data = sorted.map((user) => ({ guildId: user.guildId, userId: user.userId, level: user.level, xp: user.xp }));
             return res(data);

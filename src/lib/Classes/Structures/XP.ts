@@ -1,4 +1,4 @@
-import { fetchSchema, validateUserOptions, validateXP } from "../../Utils/index.js";
+import { fetchSchema, validateUserOptions, validateAmount } from "../../Utils/index.js";
 import { UserData, UserOptions, UserUpdate } from "../../Interfaces/index.js";
 
 export class XP {
@@ -20,8 +20,8 @@ export class XP {
      */
     add(amount = 1): Promise<UserData | null> {
         return new Promise(async (res, rej) => {
-            const XPValidation = validateXP(amount);
-            if (XPValidation.invalid) return rej(new TypeError(XPValidation.error));
+            const validation = validateAmount(amount);
+            if (validation.invalid) return rej(new TypeError(validation.error));
 
             const data = await fetchSchema(this.options);
             if (!data) return res(null);
@@ -45,8 +45,8 @@ export class XP {
      */
     subtract(amount = 1): Promise<UserData | null> {
         return new Promise(async (res, rej) => {
-            const XPValidation = validateXP(amount);
-            if (XPValidation.invalid) return rej(new TypeError(XPValidation.error));
+            const validation = validateAmount(amount);
+            if (validation.invalid) return rej(new TypeError(validation.error));
 
             const data = await fetchSchema(this.options);
             if (!data) return res(null);
@@ -63,15 +63,15 @@ export class XP {
             return res({ guildId: data.guildId, userId: data.userId, level: data.level, xp: data.xp });
         });
     }
-    // TODO: Remove default amount
+
     /**
      * Set the XP of the user
      * @param amount - The number to set the users XP to
      */
-    set(amount = 1): Promise<UserData | null> {
+    set(amount: number): Promise<UserData | null> {
         return new Promise(async (res, rej) => {
-            const XPValidation = validateXP(amount);
-            if (XPValidation.invalid) return rej(new TypeError(XPValidation.error));
+            const validation = validateAmount(amount);
+            if (validation.invalid) return rej(new TypeError(validation.error));
 
             const data = await fetchSchema(this.options);
             if (!data) return res(null);

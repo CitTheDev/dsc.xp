@@ -1,5 +1,6 @@
 import { ValidationData } from "../Interfaces/index.js";
 
+// TODO: Rename method to validateAmount
 /**
  * Check if the amount provided is valid
  * @param amount - The amount

@@ -1,5 +1,6 @@
 import { fetchSchema, validateUserOptions, validateAmount } from "../../Utils/index.js";
 import { UserData, UserOptions, UserUpdate } from "../../Interfaces/index.js";
+import { User } from "./User.js";
 
 export class Level {
     private options: UserOptions;
@@ -28,12 +29,7 @@ export class Level {
 
             data.level += amount;
             await data.save();
-            this.options.client.emit("userUpdate", {
-                client: this.options.client,
-                guildId: this.options.guildId,
-                userId: this.options.userId,
-                type: UserUpdate.LevelAdd
-            });
+            this.options.client.emit("userUpdate", new User(this.options), UserUpdate.LevelAdd);
 
             return res({ guildId: data.guildId, userId: data.userId, level: data.level, xp: data.xp });
         });
@@ -53,12 +49,7 @@ export class Level {
 
             data.level -= amount;
             await data.save();
-            this.options.client.emit("userUpdate", {
-                client: this.options.client,
-                guildId: this.options.guildId,
-                userId: this.options.userId,
-                type: UserUpdate.LevelSubtract
-            });
+            this.options.client.emit("userUpdate", new User(this.options), UserUpdate.LevelSubtract);
 
             return res({ guildId: data.guildId, userId: data.userId, level: data.level, xp: data.xp });
         });
@@ -78,12 +69,7 @@ export class Level {
 
             data.level = amount;
             await data.save();
-            this.options.client.emit("userUpdate", {
-                client: this.options.client,
-                guildId: this.options.guildId,
-                userId: this.options.userId,
-                type: UserUpdate.LevelSet
-            });
+            this.options.client.emit("userUpdate", new User(this.options), UserUpdate.LevelSet);
 
             return res({ guildId: data.guildId, userId: data.userId, level: data.level, xp: data.xp });
         });

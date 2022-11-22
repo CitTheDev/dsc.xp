@@ -23,13 +23,14 @@ export class UserManager {
             const validate = validateUserOptions(options);
             if (validate.invalid) return rej(new TypeError(validate.error));
             const data = await fetchSchema(options);
+            const user = new User(options);
 
             if (!data) {
                 await DB.create({ guildId: options.guildId, userId: options.userId });
-                this.client.emit("userCreate", options);
+                this.client.emit("userCreate", user);
             }
 
-            return res(new User(options));
+            return res(user);
         });
     }
 
@@ -46,6 +47,11 @@ export class UserManager {
             if (!data) return res(false);
 
             await DB.findOneAndDelete({ guildId: options.guildId, userId: options.userId });
+            this.client.emit("userDelete", {
+                client: this.client,
+                guildId: options.guildId,
+                userId: options.userId
+            });
             return res(true);
         });
     }

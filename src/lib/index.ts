@@ -1,16 +1,16 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import mongoose from "mongoose";
 import EventEmitter from "node:events";
-import { UserManager, GuildManager } from "./Classes/index.js";
-import { UserOptions, UserUpdateOptions } from "./Interfaces/index.js";
+import { UserManager, GuildManager, User } from "./Classes/index.js";
+import { UserOptions, UserUpdate } from "./Interfaces/index.js";
 
 interface DiscordXPEvents {
     newListener: [name: string, listener: (...args: any) => void];
     removeListener: [name: string, listener: (...args: any) => void];
 	guildDelete: [guildId: string];
-	userCreate: [options: UserOptions];
+	userCreate: [options: User];
 	userDelete: [options: UserOptions];
-	userUpdate: [options: UserUpdateOptions];
+	userUpdate: [user: User, type: UserUpdate];
 	debug: [data: string];
 }
 

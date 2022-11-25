@@ -12,8 +12,6 @@
     },
     "scripts": {
         "build": "tsup",
-        "publish": "npm publish",
-        "prepublish": "npm publish --tag dev",
         "lint": "eslint . --ext .ts",
         "fix": "eslint . --ext .ts --fix",
         "test": "node tests/index.js"

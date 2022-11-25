@@ -1,14 +1,14 @@
 import { fetchSchema, validateUserOptions, validateAmount } from "../../Utils/index.js";
-import { UserData, UserOptions, UserUpdate } from "../../Interfaces/index.js";
+import { FetchedUserData, UserFetchData, UserUpdateType } from "../../Interfaces/index.js";
 import { User } from "./User.js";
 
 export class XP {
-    private options: UserOptions;
+    private options: UserFetchData;
     /**
      * Initialise a new XP instance
      * @param options - The options for the user
      */
-    constructor (options: UserOptions) {
+    constructor (options: UserFetchData) {
         this.options = options;
 
         const validate = validateUserOptions(this.options);
@@ -19,7 +19,7 @@ export class XP {
      * Add XP to the user
      * @param amount - The amount of XP to add to the user
      */
-    add(amount = 1): Promise<UserData | null> {
+    add(amount = 1): Promise<FetchedUserData | null> {
         return new Promise(async (res, rej) => {
             const validation = validateAmount(amount);
             if (validation.invalid) return rej(new TypeError(validation.error));
@@ -29,9 +29,9 @@ export class XP {
 
             data.xp += amount;
             await data.save();
-            this.options.client.emit("userUpdate", new User(this.options), UserUpdate.XPAdd);
+            this.options.client.emit("userUpdate", new User(this.options), UserUpdateType.XPAdd);
 
-            return res({ guildId: data.guildId, userId: data.userId, level: data.level, xp: data.xp });
+            return res({ guildId: data.guildId, userId: data.userId, level: data.level, xp: data.xp, client: this.options.client });
         });
     }
 
@@ -39,7 +39,7 @@ export class XP {
      * Subtract XP from the user
      * @param amount - The amount of XP to subtract from the user
      */
-    subtract(amount = 1): Promise<UserData | null> {
+    subtract(amount = 1): Promise<FetchedUserData | null> {
         return new Promise(async (res, rej) => {
             const validation = validateAmount(amount);
             if (validation.invalid) return rej(new TypeError(validation.error));
@@ -49,9 +49,9 @@ export class XP {
 
             data.xp -= amount;
             await data.save();
-            this.options.client.emit("userUpdate", new User(this.options), UserUpdate.XPSubstract);
+            this.options.client.emit("userUpdate", new User(this.options), UserUpdateType.XPSubstract);
 
-            return res({ guildId: data.guildId, userId: data.userId, level: data.level, xp: data.xp });
+            return res({ guildId: data.guildId, userId: data.userId, level: data.level, xp: data.xp, client: this.options.client });
         });
     }
 
@@ -59,7 +59,7 @@ export class XP {
      * Set the XP of the user
      * @param amount - The number to set the users XP to
      */
-    set(amount: number): Promise<UserData | null> {
+    set(amount: number): Promise<FetchedUserData | null> {
         return new Promise(async (res, rej) => {
             const validation = validateAmount(amount);
             if (validation.invalid) return rej(new TypeError(validation.error));
@@ -69,9 +69,9 @@ export class XP {
 
             data.xp = amount;
             await data.save();
-            this.options.client.emit("userUpdate", new User(this.options), UserUpdate.XPSet);
+            this.options.client.emit("userUpdate", new User(this.options), UserUpdateType.XPSet);
 
-            return res({ guildId: data.guildId, userId: data.userId, level: data.level, xp: data.xp });
+            return res({ guildId: data.guildId, userId: data.userId, level: data.level, xp: data.xp, client: this.options.client });
         });
     }
 

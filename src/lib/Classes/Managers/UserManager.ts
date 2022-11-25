@@ -1,5 +1,5 @@
 import { DiscordXP } from "../../index.js";
-import { UserOptions } from "../../Interfaces/index.js";
+import { BaseUserFetchData } from "../../Interfaces/index.js";
 import DB from "../../schemas/LevelDB.js";
 import { validateUserOptions, fetchSchema } from "../../Utils/index.js";
 import { User } from "../index.js";
@@ -18,12 +18,12 @@ export class UserManager {
      * Create a user and save it to the database
      * @param options - The options needed to create a user
      */
-    create(options: UserOptions): Promise<User> {
+    create(options: BaseUserFetchData): Promise<User> {
         return new Promise(async (res, rej) => {
-            const validate = validateUserOptions(options);
+            const validate = validateUserOptions({ ...options, client: this.client });
             if (validate.invalid) return rej(new TypeError(validate.error));
-            const data = await fetchSchema(options);
-            const user = new User(options);
+            const data = await fetchSchema({ ...options, client: this.client });
+            const user = new User({ ...options, client: this.client });
 
             if (!data) {
                 await DB.create({ guildId: options.guildId, userId: options.userId });
@@ -38,11 +38,11 @@ export class UserManager {
      * Delete a user from the database
      * @param options - The options needed to delete a user
      */
-    delete(options: UserOptions): Promise<boolean> {
+    delete(options: BaseUserFetchData): Promise<boolean> {
         return new Promise(async (res, rej) => {
-            const validate = validateUserOptions(options);
+            const validate = validateUserOptions({ ...options, client: this.client });
             if (validate.invalid) return rej(new TypeError(validate.error));
-            const data = await fetchSchema(options);
+            const data = await fetchSchema({ ...options, client: this.client });
 
             if (!data) return res(false);
 
@@ -60,15 +60,15 @@ export class UserManager {
      * Fetch a user from the database
      * @param options - The options needed to fetch the user
      */
-    fetch(options: UserOptions): Promise<User | null> {
+    fetch(options: BaseUserFetchData): Promise<User | null> {
         return new Promise(async (res, rej) => {
-            const validate = validateUserOptions(options);
+            const validate = validateUserOptions({ ...options, client: this.client });
             if (validate.invalid) return rej(new TypeError(validate.error));
-            const data = await fetchSchema(options);
+            const data = await fetchSchema({ ...options, client: this.client });
 
             if (!data) return res(null);
 
-            return res(new User(options));
+            return res(new User({ ...options, client: this.client }));
         });
     }
 }

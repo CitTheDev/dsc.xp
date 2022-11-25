@@ -2,15 +2,15 @@
 import mongoose from "mongoose";
 import EventEmitter from "node:events";
 import { UserManager, GuildManager, User } from "./Classes/index.js";
-import { UserOptions, UserUpdate } from "./Interfaces/index.js";
+import { UserFetchData, UserUpdateType } from "./Interfaces/index.js";
 
 interface DiscordXPEvents {
     newListener: [name: string, listener: (...args: any) => void];
     removeListener: [name: string, listener: (...args: any) => void];
 	guildDelete: [guildId: string];
 	userCreate: [user: User];
-	userDelete: [userData: UserOptions];
-	userUpdate: [user: User, type: UserUpdate];
+	userDelete: [userData: UserFetchData];
+	userUpdate: [user: User, type: UserUpdateType];
 	debug: [data: string];
 }
 

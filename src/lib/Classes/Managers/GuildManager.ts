@@ -1,5 +1,5 @@
 import { DiscordXP } from "../../index.js";
-import { UserData, GuildLeaderboardData } from "../../Interfaces/index.js";
+import { BaseFetchedUserData, GuildLeaderboardData } from "../../Interfaces/index.js";
 import DB from "../../schemas/LevelDB.js";
 import { validateGuildLeaderboardOptions } from "../../Utils/index.js";
 
@@ -17,7 +17,7 @@ export class GuildManager {
      * Fetch the leaderboard of a guild
      * @param options - The options needed to fetch the leaderboard
      */
-    fetchLeaderboard(options: GuildLeaderboardData): Promise<UserData[]> {
+    fetchLeaderboard(options: GuildLeaderboardData): Promise<BaseFetchedUserData[]> {
         return new Promise(async (res, rej) => {
             const validate = validateGuildLeaderboardOptions(options);
             if (validate.invalid) return rej(new TypeError(validate.error));

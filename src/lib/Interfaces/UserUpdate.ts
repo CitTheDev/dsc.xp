@@ -1,14 +1,14 @@
-import { UserOptions } from "./UserOptions.js";
+import { UserFetchData } from "./Client.js";
 
-export interface UserUpdateOptions extends UserOptions {
-    type: UserUpdate;
-}
-
-export enum UserUpdate {
+export enum UserUpdateType {
     LevelAdd,
     LevelSubtract,
     LevelSet,
     XPAdd,
     XPSubstract,
     XPSet
+}
+
+export interface UserUpdateData extends UserFetchData {
+    type: UserUpdateType;
 }

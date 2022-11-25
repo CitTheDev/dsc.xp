@@ -1,4 +1,4 @@
-import { UserOptions } from "../../Interfaces/index.js";
+import { UserFetchData } from "../../Interfaces/index.js";
 import { fetchSchema, validateUserOptions } from "../../Utils/index.js";
 import DB from "../../schemas/LevelDB.js";
 import { Level, XP } from "../index.js";
@@ -14,7 +14,7 @@ export class User {
      * Initialise a new user instance
      * @param options - The options for the user
      */
-    constructor (options: UserOptions) {
+    constructor (options: UserFetchData) {
         const validate = validateUserOptions(options);
         if (validate.invalid) throw new TypeError(validate.error);
 

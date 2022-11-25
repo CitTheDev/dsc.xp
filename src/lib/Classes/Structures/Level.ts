@@ -1,14 +1,14 @@
 import { fetchSchema, validateUserOptions, validateAmount } from "../../Utils/index.js";
-import { UserData, UserOptions, UserUpdate } from "../../Interfaces/index.js";
+import { FetchedUserData, UserFetchData, UserUpdateType } from "../../Interfaces/index.js";
 import { User } from "./User.js";
 
 export class Level {
-    private options: UserOptions;
+    private options: UserFetchData;
     /**
      * Initialise the level structure of the user
      * @param options - The options for the user
      */
-    constructor (options: UserOptions) {
+    constructor (options: UserFetchData) {
         this.options = options;
 
         const validate = validateUserOptions(this.options);
@@ -19,7 +19,7 @@ export class Level {
      * Add a level to a users schema
      * @param amount - The amount of levels to add to the user
      */
-    add(amount = 1): Promise<UserData | null> {
+    add(amount = 1): Promise<FetchedUserData | null> {
         return new Promise(async (res, rej) => {
             const validation = validateAmount(amount);
             if (validation.invalid) return rej(new TypeError(validation.error));
@@ -29,9 +29,9 @@ export class Level {
 
             data.level += amount;
             await data.save();
-            this.options.client.emit("userUpdate", new User(this.options), UserUpdate.LevelAdd);
+            this.options.client.emit("userUpdate", new User(this.options), UserUpdateType.LevelAdd);
 
-            return res({ guildId: data.guildId, userId: data.userId, level: data.level, xp: data.xp });
+            return res({ guildId: data.guildId, userId: data.userId, level: data.level, xp: data.xp, client: this.options.client });
         });
     }
 
@@ -39,7 +39,7 @@ export class Level {
      * Subtract a level from a users schema
      * @param amount - The amount of levels to subtract from the user
      */
-    subtract(amount = 1): Promise<UserData | null> {
+    subtract(amount = 1): Promise<FetchedUserData | null> {
         return new Promise(async (res, rej) => {
             const validation = validateAmount(amount);
             if (validation.invalid) return rej(new TypeError(validation.error));
@@ -49,9 +49,9 @@ export class Level {
 
             data.level -= amount;
             await data.save();
-            this.options.client.emit("userUpdate", new User(this.options), UserUpdate.LevelSubtract);
+            this.options.client.emit("userUpdate", new User(this.options), UserUpdateType.LevelSubtract);
 
-            return res({ guildId: data.guildId, userId: data.userId, level: data.level, xp: data.xp });
+            return res({ guildId: data.guildId, userId: data.userId, level: data.level, xp: data.xp, client: this.options.client });
         });
     }
 
@@ -59,7 +59,7 @@ export class Level {
      * Set the level of a user
      * @param amount - The number to set the users level to
      */
-    set(amount: number): Promise<UserData | null> {
+    set(amount: number): Promise<FetchedUserData | null> {
         return new Promise(async (res, rej) => {
             const validation = validateAmount(amount);
             if (validation.invalid) return rej(new TypeError(validation.error));
@@ -69,9 +69,9 @@ export class Level {
 
             data.level = amount;
             await data.save();
-            this.options.client.emit("userUpdate", new User(this.options), UserUpdate.LevelSet);
+            this.options.client.emit("userUpdate", new User(this.options), UserUpdateType.LevelSet);
 
-            return res({ guildId: data.guildId, userId: data.userId, level: data.level, xp: data.xp });
+            return res({ guildId: data.guildId, userId: data.userId, level: data.level, xp: data.xp, client: this.options.client });
         });
     }
 

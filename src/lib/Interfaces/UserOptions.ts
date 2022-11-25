@@ -1,7 +1,4 @@
-import { DiscordXP } from "../index.js";
-
-export interface UserOptions {
-    client: DiscordXP;
+export interface BaseUserFetchData {
     guildId: string;
     userId: string;
 }

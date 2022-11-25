@@ -8,8 +8,8 @@ interface DiscordXPEvents {
     newListener: [name: string, listener: (...args: any) => void];
     removeListener: [name: string, listener: (...args: any) => void];
 	guildDelete: [guildId: string];
-	userCreate: [options: User];
-	userDelete: [options: UserOptions];
+	userCreate: [user: User];
+	userDelete: [userData: UserOptions];
 	userUpdate: [user: User, type: UserUpdate];
 	debug: [data: string];
 }

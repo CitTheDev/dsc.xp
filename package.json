@@ -1,6 +1,6 @@
 {
     "name": "dsc.xp",
-    "version": "1.1.4",
+    "version": "1.2.0",
     "description": "A simple XP system for your discord bot",
     "main": "./dist/index.js",
     "module": "./dist/index.mjs",
@@ -12,8 +12,11 @@
     },
     "scripts": {
         "build": "tsup",
+        "publish": "npm publish",
+        "prepublish": "npm publish --tag dev",
         "lint": "eslint . --ext .ts",
-        "fix": "eslint . --ext .ts --fix"
+        "fix": "eslint . --ext .ts --fix",
+        "test": "node tests/index.js"
     },
     "files": [
         "dist"

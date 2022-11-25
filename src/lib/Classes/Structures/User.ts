@@ -7,7 +7,7 @@ import { DiscordXP } from "../../index.js";
 export class User {
     public client: DiscordXP;
     public guildId: string;
-    public userId: string;
+    public id: string;
     public level: Level;
     public xp: XP;
     /**
@@ -20,7 +20,7 @@ export class User {
 
         this.client = options.client;
         this.guildId = options.guildId;
-        this.userId = options.userId;
+        this.id = options.userId;
         this.level = new Level(options);
         this.xp = new XP(options);
     }
@@ -30,14 +30,14 @@ export class User {
      */
     delete(): Promise<boolean | null> {
         return new Promise(async (res) => {
-            const data = await fetchSchema({ client: this.client, guildId: this.guildId, userId: this.userId });
+            const data = await fetchSchema({ client: this.client, guildId: this.guildId, userId: this.id });
             if (!data) return res(null);
 
-            await DB.findOneAndDelete({ guildId: this.guildId, userId: this.userId });
+            await DB.findOneAndDelete({ guildId: this.guildId, userId: this.id });
             this.client.emit("userDelete", {
                 client: this.client,
                 guildId: this.guildId,
-                userId: this.userId
+                userId: this.id
             });
             return res(true);
         });

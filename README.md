@@ -10,15 +10,19 @@ Node.js version 16.9.0 or higher is required for this package to function as int
 - Included type declarations for TypeScript developers
 
 ## Examples
-Import the dsc.xp package:
+Import the necessary packages:
 ```js
 const { DiscordXP } = require("dsc.xp"); // For CommonJS
 import { DiscordXP } from "dsc.xp"; // For ESM
+
+const mongoose = require("mongoose"); // For CommonJS
+import mongoose from "mongoose"; // For ESM
 ```
 
 Initialise the dsc.xp package:
 ```js
-const xpClient = new DiscordXP("MongoDB URL"); // Create a new dsc.xp instance
+await mongoose.connect("MongoDB URL"); // Connect to your MongoDB database
+const xpClient = new DiscordXP(); // Create a new dsc.xp instance
 ```
 
 More examples:

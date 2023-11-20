@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import mongoose from "mongoose";
 import EventEmitter from "node:events";
 import { UserManager, GuildManager, User } from "./Classes/index.js";
 import { UserFetchData, UserUpdateType } from "./Interfaces/index.js";
@@ -14,6 +13,7 @@ interface DiscordXPEvents {
 	debug: [data: string];
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unsafe-declaration-merging
 export interface DiscordXP {
 	emit:
         (<K extends keyof DiscordXPEvents>(event: K, ...args: DiscordXPEvents[K]) => boolean) &
@@ -36,6 +36,7 @@ export interface DiscordXP {
 		(<S extends string | symbol>(event?: Exclude<S, keyof DiscordXPEvents>) => this);
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unsafe-declaration-merging
 export class DiscordXP extends EventEmitter {
     /** The User Manager */
     public users: UserManager = new UserManager(this);
@@ -43,15 +44,8 @@ export class DiscordXP extends EventEmitter {
     public guilds: GuildManager = new GuildManager(this);
     /**
      * Initialize the dsc.xp package
-     * @param url - The MongoDB database URL
      */
-    constructor (url: string) {
+    constructor () {
         super ();
-
-        if (!url) throw new TypeError("A MongoDB URL was not provided");
-        setTimeout(async () => {
-            await mongoose.connect(url);
-            this.emit("debug", "[dsc.xp] Connected to the database");
-        }, 1000);
     }
 }

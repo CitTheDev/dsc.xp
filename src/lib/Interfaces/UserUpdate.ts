@@ -10,5 +10,6 @@ export enum UserUpdateType {
 }
 
 export interface UserUpdateData extends FinalUserFetchData {
+    /** The type of update */
     type: UserUpdateType;
 }

@@ -6,11 +6,12 @@ import { fetchSchema, validateGuildLeaderboardOptions } from "../../Utils/index.
 export class GuildManager {
     private client: DiscordXP;
     /**
-     * Initialise the GuildManager class
+     * The GuildManager class
      * @param client - The DiscordXP client
      */
     constructor (client: DiscordXP) {
         this.client = client;
+        this.client.emit("debug", "GuildManager class created");
     }
 
     /**
@@ -70,7 +71,7 @@ export class GuildManager {
     }
 
     /**
-     * Delete all entries of a specific guild
+     * Delete a guild and all it's data
      * @param guildId - The ID of the guild to delete
      */
     delete(guildId: string): Promise<boolean> {

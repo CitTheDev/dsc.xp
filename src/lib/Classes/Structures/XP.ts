@@ -5,7 +5,7 @@ import { User } from "./User.js";
 export class XP {
     private options: FinalUserFetchData;
     /**
-     * Initialise a new XP instance
+     * Initialise the XP structure of the user
      * @param options - The options for the user
      */
     constructor (options: FinalUserFetchData) {
@@ -71,7 +71,7 @@ export class XP {
                     const xp = tempGuild[tempUserIndex].xp;
                     const newTempUserData: TempStorageValue = {
                         userId: this.options.userId,
-                        level: (xp - amount) < 1 ? 1 : xp - amount,
+                        level: (xp - amount) < 0 ? 0 : xp - amount,
                         xp: tempGuild[tempUserIndex].xp
                     };
 

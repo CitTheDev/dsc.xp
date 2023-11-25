@@ -2,7 +2,7 @@ import { ValidationData, GuildLeaderboardData } from "../Interfaces/index.js";
 
 /**
  * Checks to make sure that the correct options have been given
- * @param options - The options needed for the validation
+ * @param options - The data needed for the validation
  */
 export function validateGuildLeaderboardOptions(options: GuildLeaderboardData): ValidationData {
     if (!options.guildId) return ({ invalid: true, error: "A guild ID was not provided" });

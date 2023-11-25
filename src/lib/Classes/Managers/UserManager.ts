@@ -6,16 +6,17 @@ import { User } from "../index.js";
 export class UserManager {
     private client: DiscordXP;
     /**
-     * Initialise the UserManager class
+     * The UserManager class
      * @param client - The DiscordXP client
      */
     constructor (client: DiscordXP) {
         this.client = client;
+        this.client.emit("debug", "UserManager class created");
     }
 
     /**
-     * Create a user and save it to the database
-     * @param options - The options needed to create a user
+     * Create a user
+     * @param options - The data needed to create a user
      */
     create(options: BaseUserFetchData): Promise<User> {
         return new Promise(async (res, rej) => {
@@ -32,8 +33,8 @@ export class UserManager {
     }
 
     /**
-     * Fetch a user from the database
-     * @param options - The options needed to fetch the user
+     * Fetch a user
+     * @param options - The data needed to fetch the user
      */
     fetch(options: BaseUserFetchData): Promise<User | null> {
         return new Promise(async (res, rej) => {
@@ -42,8 +43,6 @@ export class UserManager {
             const data = await fetchUserSchema({ ...options });
 
             if (!data) return res(null);
-
-            // const tempUser = this.client.tempStorage.get(options.guildId)?.find((user) => user.userId === data.users[data.index].userId);
 
             return res(new User({ ...options, client: this.client }));
         });

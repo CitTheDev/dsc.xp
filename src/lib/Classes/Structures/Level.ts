@@ -6,7 +6,7 @@ export class Level {
     private options: FinalUserFetchData;
     /**
      * Initialise the level structure of the user
-     * @param options - The options for the user
+     * @param options - The data for the user
      */
     constructor (options: FinalUserFetchData) {
         this.options = options;
@@ -16,7 +16,7 @@ export class Level {
     }
 
     /**
-     * Add a level to a users schema
+     * Add levels to a user
      * @param amount - The amount of levels to add to the user
      */
     add(amount = 1): Promise<FinalFetchedUserData | null> {
@@ -51,7 +51,7 @@ export class Level {
     }
 
     /**
-     * Subtract a level from a users schema
+     * Subtract levels from a user
      * @param amount - The amount of levels to subtract from the user
      */
     subtract(amount = 1): Promise<FinalFetchedUserData | null> {
@@ -80,11 +80,6 @@ export class Level {
                 }
             }
 
-            // const data = await fetchUserSchema(this.options);
-            // if (!data) return res(null);
-
-            // data.level -= amount;
-            // await data.save();
             this.options.client.emit("userUpdate", new User(this.options), UserUpdateType.LevelSubtract);
 
             return res({ guildId: data.guildId, userId: data.users[data.index].userId, level: data.users[data.index].level, xp: data.users[data.index].xp, client: this.options.client });

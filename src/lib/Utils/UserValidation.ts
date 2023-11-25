@@ -3,7 +3,7 @@ import DB from "../schemas/LevelDB.js";
 
 /**
  * Checks to make sure that the correct options have been given
- * @param options - The options needed for the validation
+ * @param options - The data needed for the validation
  */
 export function validateUserOptions(options: FinalUserFetchData): ValidationData {
     if (!options.guildId) return ({ invalid: true, error: "A guild ID was not provided" });
@@ -15,7 +15,7 @@ export function validateUserOptions(options: FinalUserFetchData): ValidationData
 
 /**
  * Checks if a schema exists in the database
- * @param guildId - The options needed for the validation
+ * @param guildId - The data needed for the validation
  */
 export async function fetchSchema(guildId: string) {
     return await DB.findOne({ guildId });
@@ -23,7 +23,7 @@ export async function fetchSchema(guildId: string) {
 
 /**
  * Checks if a user exists in the database
- * @param options - The options needed for the validation
+ * @param options - The data needed for the validation
  */
 export async function fetchUserSchema(options: BaseUserFetchData) {
     const data = await fetchSchema(options.guildId);

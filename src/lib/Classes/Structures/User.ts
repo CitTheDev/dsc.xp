@@ -12,7 +12,7 @@ export class User {
     public xp: XP;
     /**
      * Initialise a new user instance
-     * @param options - The options for the user
+     * @param options - The data of the user
      */
     constructor (options: FinalUserFetchData) {
         const validate = validateUserOptions(options);
@@ -28,10 +28,10 @@ export class User {
     /**
      * Delete the user from the database
      */
-    delete(): Promise<boolean | null> {
+    delete(): Promise<boolean> {
         return new Promise(async (res) => {
             const data = await fetchUserSchema({ guildId: this.guildId, userId: this.userId });
-            if (!data) return res(null);
+            if (!data) return res(false);
 
             await DB.findOneAndDelete({ guildId: this.guildId, userId: this.userId });
             this.client.emit("userDelete", {

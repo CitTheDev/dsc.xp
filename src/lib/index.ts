@@ -55,12 +55,17 @@ export class DiscordXP extends EventEmitter {
     public tempStorage: Collection<string, TempStorageValue[]> = new Collection();
     /**
      * Initialize the dsc.xp package
+     * @param options - The data needed for the package to work properly
      */
     constructor (options: DiscordXPOptions) {
         super ();
+        this.emit("debug", "DiscordXP constructure initialised");
         this.options = options;
 
         setTimeout(async () => {
+            this.emit("debug", "Database updating started");
+            const timeStart = Date.now();
+
             for (const [guildId, tempUsers] of this.tempStorage) {
                 const data = await DB.findOne({ guildId });
                 if (!data) return;
@@ -78,10 +83,12 @@ export class DiscordXP extends EventEmitter {
 
                     await data.save();
                 }
-
-                this.tempStorage.delete(guildId);
             }
+            this.tempStorage.clear();
+            this.emit("debug", "Temporary storage cleared");
 
+            const timeTaken = Date.now() - timeStart;
+            this.emit("debug", `Database updating completed. Time taken: ${timeTaken}`);
         }, this.options.saveTimeout * 1000);
     }
 }

@@ -2,7 +2,6 @@
 import EventEmitter from "node:events";
 import { UserManager, GuildManager, User } from "./Classes/index.js";
 import { FinalUserFetchData, TempStorageValue, UserUpdateType } from "./Interfaces/index.js";
-import { Collection } from "@discordjs/collection";
 import DB from "./schemas/LevelDB.js";
 
 interface DiscordXPEvents {
@@ -52,7 +51,7 @@ export class DiscordXP extends EventEmitter {
     /** The Guild Manager */
     public guilds: GuildManager = new GuildManager(this);
     /** Where everything is stored before the data is pushed to the database. After everything is updated the collection is cleared. */
-    public tempStorage: Collection<string, TempStorageValue[]> = new Collection();
+    public tempStorage: Map<string, TempStorageValue[]> = new Map();
     /**
      * Initialize the dsc.xp package
      * @param options - The data needed for the package to work properly

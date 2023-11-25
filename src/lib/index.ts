@@ -40,7 +40,7 @@ export interface DiscordXP {
 }
 
 export interface DiscordXPOptions {
-    /** The time in seconds for how often the data in tempStorage gets updated to the MongoDB database */
+    /** The time in seconds for how often the data in tempStorage gets updated to the database */
     saveTimeout: number;
 }
 

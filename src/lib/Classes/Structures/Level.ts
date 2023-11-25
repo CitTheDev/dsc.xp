@@ -132,35 +132,18 @@ export class Level {
     fetch(): Promise<number | null> {
         return new Promise(async (res) => {
             const data = await fetchUserSchema(this.options);
-            if (!data) return res(null);
+            const tempGuild = this.options.client.tempStorage.get(this.options.guildId);
+            const tempUser = tempGuild?.find((user) => user.userId === this.options.userId);
 
-            // const tempGuild = this.options.client.tempStorage.get(this.options.guildId);
-            // if (!data?.users.length && !tempStorage?.length) return res(null);
+            if (!data && !tempUser) return res(null);
 
-            // let resolvedData: TempStorageValue[] = [];
+            let resolvedLevel: number = 1;
 
-            // if (!data?.users.length && tempStorage?.length) resolvedData = tempStorage;
-            // if (data?.users.length && !tempStorage?.length) resolvedData = data.users;
+            if (!data && tempUser) resolvedLevel = tempUser.level;
+            if (data && !tempUser) resolvedLevel = data.users[data.index].level;
+            if (data && tempUser) resolvedLevel = data.users[data.index].level + tempUser.level;
 
-            // if (data?.users.length && tempStorage?.length) {
-            //     const beforeResolvedData: TempStorageValue[] = [...data.users];
-
-            //     for (const user of tempStorage) {
-            //         const userIndex = data.users.findIndex((dbUser) => dbUser.userId === user.userId);
-
-            //         if (userIndex === -1) return;
-
-            //         beforeResolvedData[userIndex].level += user.level;
-            //         beforeResolvedData[userIndex].xp += user.xp;
-            //     }
-
-            //     resolvedData = beforeResolvedData;
-            // }
-
-            // const data = await fetchUserSchema(this.options);
-            // if (!data) return res(null);
-
-            return res(data.level);
+            return res(resolvedLevel);
         });
     }
 }

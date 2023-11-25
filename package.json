@@ -11,7 +11,6 @@
         "types": "./dist/index.d.ts"
     },
     "scripts": {
-        "build": "tsup",
         "lint": "eslint . --ext .ts",
         "fix": "eslint . --ext .ts --fix",
         "test": "node tests/index.js"
@@ -24,8 +23,6 @@
         "type": "git",
         "url": "git+https://github.com/CitTheDev/dsc.xp.git"
     },
-    "keywords": [],
-    "author": "CitTheDev",
     "bugs": {
         "url": "https://github.com/CitTheDev/dsc.xp/issues"
     },

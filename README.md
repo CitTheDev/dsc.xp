@@ -2,7 +2,7 @@
 This is a simple and unique package that uses MongoDB and lets you easily set up a levelling system for your discord bot. It includes many in-built features such as creating a user schema to the database and also includes fetching and deleting. Unlike many other packages, this package includes easy to follow properties and methods so that you know where you can find them.
 
 ## Note
-Node.js version 16.9.0 or higher is required for this package to function as intended
+Node.js version 16.20.1 or higher is required for this package to function as intended
 
 ## Features
 - 100% Promise-based
@@ -22,7 +22,7 @@ import mongoose from "mongoose"; // For ESM
 Initialise the dsc.xp package:
 ```js
 await mongoose.connect("MongoDB URL"); // Connect to your MongoDB database
-const xpClient = new DiscordXP(); // Create a new dsc.xp instance
+const xpClient = new DiscordXP({ saveTimeout: 300 }); // Create a new dsc.xp instance with the necessary options
 ```
 
 More examples:

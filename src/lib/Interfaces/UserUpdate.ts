@@ -1,4 +1,4 @@
-import { UserFetchData } from "./Client.js";
+import { FinalUserFetchData } from "./index.js";
 
 export enum UserUpdateType {
     LevelAdd,
@@ -9,6 +9,6 @@ export enum UserUpdateType {
     XPSet
 }
 
-export interface UserUpdateData extends UserFetchData {
+export interface UserUpdateData extends FinalUserFetchData {
     type: UserUpdateType;
 }

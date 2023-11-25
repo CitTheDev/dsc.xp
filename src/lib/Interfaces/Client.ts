@@ -1,11 +1,10 @@
 import { DiscordXP } from "../index.js";
-import { BaseFetchedUserData } from "./UserData.js";
-import { BaseUserFetchData } from "./UserOptions.js";
+import { ResolvedFetchedUserData, BaseUserFetchData } from "./index.js";
 
-export interface FetchedUserData extends BaseFetchedUserData {
+export interface FinalFetchedUserData extends ResolvedFetchedUserData {
     client: DiscordXP
 }
 
-export interface UserFetchData extends BaseUserFetchData {
+export interface FinalUserFetchData extends BaseUserFetchData {
     client: DiscordXP;
 }

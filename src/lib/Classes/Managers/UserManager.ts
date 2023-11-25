@@ -1,7 +1,6 @@
 import { DiscordXP } from "../../index.js";
 import { BaseUserFetchData } from "../../Interfaces/index.js";
-import DB from "../../schemas/LevelDB.js";
-import { validateUserOptions, fetchSchema } from "../../Utils/index.js";
+import { validateUserOptions, fetchUserSchema } from "../../Utils/index.js";
 import { User } from "../index.js";
 
 export class UserManager {
@@ -22,37 +21,13 @@ export class UserManager {
         return new Promise(async (res, rej) => {
             const validate = validateUserOptions({ ...options, client: this.client });
             if (validate.invalid) return rej(new TypeError(validate.error));
-            const data = await fetchSchema({ ...options, client: this.client });
             const user = new User({ ...options, client: this.client });
 
-            if (!data) {
-                await DB.create({ guildId: options.guildId, userId: options.userId });
-                this.client.emit("userCreate", user);
-            }
+            const tempGuild = this.client.tempStorage.get(options.guildId);
+            if (!tempGuild) this.client.tempStorage.set(options.guildId, [{ userId: options.userId, level: 1, xp: 0 }]);
+            else tempGuild.push({ userId: options.userId, level: 1, xp: 0 });
 
             return res(user);
-        });
-    }
-
-    /**
-     * Delete a user from the database
-     * @param options - The options needed to delete a user
-     */
-    delete(options: BaseUserFetchData): Promise<boolean> {
-        return new Promise(async (res, rej) => {
-            const validate = validateUserOptions({ ...options, client: this.client });
-            if (validate.invalid) return rej(new TypeError(validate.error));
-            const data = await fetchSchema({ ...options, client: this.client });
-
-            if (!data) return res(false);
-
-            await DB.findOneAndDelete({ guildId: options.guildId, userId: options.userId });
-            this.client.emit("userDelete", {
-                client: this.client,
-                guildId: options.guildId,
-                userId: options.userId
-            });
-            return res(true);
         });
     }
 
@@ -64,9 +39,11 @@ export class UserManager {
         return new Promise(async (res, rej) => {
             const validate = validateUserOptions({ ...options, client: this.client });
             if (validate.invalid) return rej(new TypeError(validate.error));
-            const data = await fetchSchema({ ...options, client: this.client });
+            const data = await fetchUserSchema({ ...options });
 
             if (!data) return res(null);
+
+            // const tempUser = this.client.tempStorage.get(options.guildId)?.find((user) => user.userId === data.users[data.index].userId);
 
             return res(new User({ ...options, client: this.client }));
         });

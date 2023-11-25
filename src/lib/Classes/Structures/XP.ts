@@ -1,14 +1,14 @@
 import { fetchSchema, validateUserOptions, validateAmount } from "../../Utils/index.js";
-import { FetchedUserData, UserFetchData, UserUpdateType } from "../../Interfaces/index.js";
+import { FinalFetchedUserData, FinalUserFetchData, UserUpdateType } from "../../Interfaces/index.js";
 import { User } from "./User.js";
 
 export class XP {
-    private options: UserFetchData;
+    private options: FinalUserFetchData;
     /**
      * Initialise a new XP instance
      * @param options - The options for the user
      */
-    constructor (options: UserFetchData) {
+    constructor (options: FinalUserFetchData) {
         this.options = options;
 
         const validate = validateUserOptions(this.options);
@@ -19,7 +19,7 @@ export class XP {
      * Add XP to the user
      * @param amount - The amount of XP to add to the user
      */
-    add(amount = 1): Promise<FetchedUserData | null> {
+    add(amount = 1): Promise<FinalFetchedUserData | null> {
         return new Promise(async (res, rej) => {
             const validation = validateAmount(amount);
             if (validation.invalid) return rej(new TypeError(validation.error));
@@ -39,7 +39,7 @@ export class XP {
      * Subtract XP from the user
      * @param amount - The amount of XP to subtract from the user
      */
-    subtract(amount = 1): Promise<FetchedUserData | null> {
+    subtract(amount = 1): Promise<FinalFetchedUserData | null> {
         return new Promise(async (res, rej) => {
             const validation = validateAmount(amount);
             if (validation.invalid) return rej(new TypeError(validation.error));
@@ -59,7 +59,7 @@ export class XP {
      * Set the XP of the user
      * @param amount - The number to set the users XP to
      */
-    set(amount: number): Promise<FetchedUserData | null> {
+    set(amount: number): Promise<FinalFetchedUserData | null> {
         return new Promise(async (res, rej) => {
             const validation = validateAmount(amount);
             if (validation.invalid) return rej(new TypeError(validation.error));

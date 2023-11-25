@@ -27,8 +27,10 @@
         "url": "https://github.com/CitTheDev/dsc.xp/issues"
     },
     "homepage": "https://github.com/CitTheDev/dsc.xp#readme",
+    "engines": {
+        "node": ">=16.20.1"
+    },
     "dependencies": {
-        "@discordjs/collection": "^2.0.0",
         "mongoose": "^8.0.1"
     },
     "devDependencies": {
